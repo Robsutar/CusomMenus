@@ -3,6 +3,7 @@ package com.robsutar.menus;
 import com.robsutar.menus.Frame.GameFrame;
 import com.robsutar.menus.ImageBuffer.ImageManager;
 import com.robsutar.menus.RenderableObjects.Menus.Box;
+import com.robsutar.menus.RenderableObjects.Menus.StartMenu;
 
 import java.awt.*;
 import java.io.File;
@@ -16,7 +17,7 @@ public class Main {
     public static int yMouse;
     public static char state;
 
-    public static Box box = new Box(50,50,100,100, ImageManager.loadImage(assetsPath+"box.png"));
+    public static StartMenu box = new StartMenu(50,50,100,100, ImageManager.loadImage(assetsPath+"box.png"));
 
     public static void main(String[] args){
         new GameFrame();

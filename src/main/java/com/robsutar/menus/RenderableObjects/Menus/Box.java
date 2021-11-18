@@ -13,7 +13,7 @@ public class Box extends RenderableObject{
 
     private BufferedImage image;
 
-    public Box(int x, int y,int width,int height,BufferedImage image){
+    public Box(int x, int y, int width, int height, BufferedImage image){
         setX(x);setY(y);setWidth(width);setHeight(height);
         this.image= ImageManager.cropImage(image,0,0,width,height);
     }
@@ -24,6 +24,10 @@ public class Box extends RenderableObject{
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public BufferedImage getImage() {
+        return image;
     }
 
     public int getWidth() {
@@ -51,19 +55,15 @@ public class Box extends RenderableObject{
     protected void renderer(Graphics2D g2d) {
         if (isMouseAbove()){
             g2d.setColor(Color.cyan);
-            g2d.fillRect(getX(),getY(),getWidth()*2,getHeight()*2);
-            g2d.drawString((Main.getxMouse()+" / "+Main.getyMouse()),Main.getxMouse(),Main.getyMouse());
+            g2d.drawImage(image,getX(),getY(),null);
         } else{
             g2d.setColor(Color.yellow);
-            g2d.fillRect(getX(),getY(),getWidth(),getHeight());
-            g2d.drawString((Main.getxMouse()+" / "+Main.getyMouse()),Main.getxMouse(),Main.getyMouse());
         }
+        g2d.fillRect(getX(),getY(),getWidth()/2,getHeight()/2);
+        g2d.drawString((Main.getxMouse()+"  "+Main.getyMouse()),Main.getxMouse(),Main.getyMouse());
     }
 
     @Override
     protected void tick() {
-        if (isMouseAbove()){
-
-        }
     }
 }
