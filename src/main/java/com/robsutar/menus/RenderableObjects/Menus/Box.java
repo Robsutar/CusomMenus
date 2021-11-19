@@ -13,9 +13,10 @@ public abstract class Box extends RenderableObject{
 
     private BufferedImage image;
 
-    public Box(int x, int y, int width, int height, BufferedImage image){
+    private boolean wasClicked=false;
+
+    public Box(int x, int y, int width, int height){
         setX(x);setY(y);setWidth(width);setHeight(height);
-        this.image= ImageManager.cropImage(image,0,0,width,height);
     }
 
     public void setWidth(int width) {
@@ -30,6 +31,10 @@ public abstract class Box extends RenderableObject{
         return image;
     }
 
+    public void setImage(BufferedImage image){
+        this.image=ImageManager.cropImage(image,0,0,width,height);
+    }
+
     public int getWidth() {
         return width;
     }
@@ -39,34 +44,16 @@ public abstract class Box extends RenderableObject{
     }
 
     public boolean isInto(int x,int y){
-        if (x>=this.getX()&&x<=width&&y>=this.getY()&&y<=height){
-            return true;
-        }
-        return false;
+        return x >= this.getX() && x <= width && y >= this.getY() && y <= height;
     }
 
     public boolean isInto(){
         int x=Main.getxMouse(), y = Main.getyMouse();
-        if (x>=this.getX()&&x<=width&&y>=this.getY()&&y<=height){
-            return true;
-        }
-        return false;
+        return x >= this.getX() && x <= width && y >= this.getY() && y <= height;
     }
 
     public boolean isMouseAbove(){
-        if (isInto()){
-            return true;
-        } else return false;
-    }
-
-    public void onClicked(MouseEvent e){
-        if (isInto()) {
-            clicked(e);
-        }
-    }
-
-    public  void clicked(MouseEvent e){
-        System.out.println("no action for this button");
+        return isInto();
     }
 
     @Override
@@ -83,5 +70,27 @@ public abstract class Box extends RenderableObject{
 
     @Override
     protected void tick() {
+    }
+
+    public void onPressed(MouseEvent e){
+        if (isInto()) {
+            clicked(e);
+        }
+    }
+
+    public  void clicked(MouseEvent e){
+        wasClicked=true;
+        System.out.println("no CLICKED action for this button");
+    }
+
+    public void onReleased(MouseEvent e){
+        if (wasClicked) {
+            wasClicked=false;
+            released(e);
+        }
+    }
+
+    public  void released(MouseEvent e){
+        System.out.println("no RELEASED action for this button");
     }
 }

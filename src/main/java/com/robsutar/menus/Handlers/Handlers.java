@@ -27,10 +27,17 @@ public abstract class Handlers extends RenderableObject{
         }
     }
 
-    public void onMouseClick(MouseEvent e){
+    public void onMousePressed(MouseEvent e){
         for (Box b:boxes
         ) {
-            b.onClicked(e);
+            b.onPressed(e);
+        }
+    }
+
+    public void onMouseReleased(MouseEvent e){
+        for (Box b:boxes
+        ) {
+            b.onReleased(e);
         }
     }
 }

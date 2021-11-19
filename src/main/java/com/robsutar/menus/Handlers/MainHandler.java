@@ -16,10 +16,17 @@ public class MainHandler{
         }
     }
 
-    public void onMouseClicked(MouseEvent e ){
+    public void onMousePressed(MouseEvent e ){
         for (Handlers h:handlers
         ) {
-            h.onMouseClick(e);
+            h.onMousePressed(e);
+        }
+    }
+
+    public void onMouseReleased(MouseEvent e) {
+        for (Handlers h:handlers
+        ) {
+            h.onMouseReleased(e);
         }
     }
 }

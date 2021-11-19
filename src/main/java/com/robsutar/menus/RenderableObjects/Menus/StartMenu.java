@@ -1,5 +1,6 @@
 package com.robsutar.menus.RenderableObjects.Menus;
 
+import com.robsutar.menus.ImageBuffer.ImageManager;
 import com.robsutar.menus.Main;
 
 import java.awt.*;
@@ -8,10 +9,12 @@ import java.awt.image.BufferedImage;
 
 
 public class StartMenu extends Box{
-    public StartMenu(int x, int y, int width, int height, BufferedImage image) {
-        super(x, y, width, height, image);
-    }
+    private final BufferedImage image =  ImageManager.loadImage(Main.assetsPath +"box.png");
 
+    public StartMenu(int x, int y, int width, int height) {
+        super(x, y, width, height);
+        setImage(image);
+    }
 
     @Override
     protected void renderer(Graphics2D g2d) {

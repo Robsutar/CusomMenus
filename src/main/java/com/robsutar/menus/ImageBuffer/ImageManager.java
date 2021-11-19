@@ -31,8 +31,10 @@ public class ImageManager {
     }
 
     public static BufferedImage cropImage(BufferedImage img, int x, int y, int width, int height){
-        BufferedImage croppedImage = img.getSubimage(x, y, width, height);
-        return croppedImage;
+        if (img!=null) {
+            BufferedImage croppedImage = img.getSubimage(x, y, width, height);
+            return croppedImage;
+        } else return null;
     }
 
     public static void makeImage(BufferedImage img , AffineTransform at,Graphics2D g2d){
