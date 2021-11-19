@@ -2,13 +2,13 @@ package com.robsutar.menus.RenderableObjects.Menus;
 
 import com.robsutar.menus.ImageBuffer.ImageManager;
 import com.robsutar.menus.Main;
-import com.robsutar.menus.RenderableObjects.Position;
 import com.robsutar.menus.RenderableObjects.RenderableObject;
 
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
-public class Box extends RenderableObject{
+public abstract class Box extends RenderableObject{
     private int width=0,height=0;
 
     private BufferedImage image;
@@ -45,10 +45,28 @@ public class Box extends RenderableObject{
         return false;
     }
 
+    public boolean isInto(){
+        int x=Main.getxMouse(), y = Main.getyMouse();
+        if (x>=this.getX()&&x<=width&&y>=this.getY()&&y<=height){
+            return true;
+        }
+        return false;
+    }
+
     public boolean isMouseAbove(){
-        if (isInto(Main.getxMouse(),Main.getyMouse())){
+        if (isInto()){
             return true;
         } else return false;
+    }
+
+    public void onClicked(MouseEvent e){
+        if (isInto()) {
+            clicked(e);
+        }
+    }
+
+    public  void clicked(MouseEvent e){
+        System.out.println("no action for this button");
     }
 
     @Override
